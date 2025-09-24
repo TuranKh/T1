@@ -26,7 +26,7 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
-  const [favorites, setFavorites] = useState<Set<number>>(new Set())
+  const [favorites, setFavorites] = useState<number[]>([])
 
   // TODO: Implement API fetch function
   const fetchProducts = async () => {
@@ -34,15 +34,13 @@ function App() {
   }
 
   // TODO: Implement search and filter logic
-  const filteredProducts = products.filter(product => {
-  })
+  const filteredProducts = products.filter(product => {})
 
   // TODO: Implement category extraction
   const categories: string[] = []
 
   // TODO: Implement favorite toggle
   const toggleFavorite = (productId: number) => {
-    // Candidate should implement this
   }
 
   useEffect(() => {
@@ -83,7 +81,7 @@ function App() {
         <div className="stats">
           <p>Total Products: {products.length}</p>
           <p>Filtered Products: {filteredProducts.length}</p>
-          <p>Favorites: {favorites.size}</p>
+          <p>Favorites: {favorites.length}</p>
         </div>
 
         <div className="products-grid">
@@ -98,9 +96,9 @@ function App() {
                 <p className="product-rating">Rating: {product.rating}/5</p>
                 <button
                   onClick={() => toggleFavorite(product.id)}
-                  className={`favorite-btn ${favorites.has(product.id) ? 'favorited' : ''}`}
+                  className={`favorite-btn ${favorites.includes(product.id) ? 'favorited' : ''}`}
                 >
-                  {favorites.has(product.id) ? '❤️' : '🤍'}
+                  {favorites.includes(product.id) ? '❤️' : '🤍'}
                 </button>
               </div>
             </div>
